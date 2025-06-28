@@ -1,0 +1,103 @@
+const tableBody = document.querySelector("#tableBody")
+const nameProduct = document.querySelector("#name")
+const descriptionProduct = document.querySelector("#description")
+const brandProduct = document.querySelector("#brand")
+const imageProduct = document.querySelector("#imageUrl")
+const priceProduct = document.querySelector("#price")
+document.querySelector("#saveButton").addEventListener("click", saveProduct)
+
+fetchProduct()
+async function fetchProduct() {
+    try {
+        const result = await fetch("https://striveschool-api.herokuapp.com/api/product", {
+            headers: {
+                Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODVmOTU3YzIzZGQwMjAwMTUxZGM0ZmIiLCJpYXQiOjE3NTEwOTQ2NTIsImV4cCI6MTc1MjMwNDI1Mn0.rrVjarck49W1zlK6qZ0QG0mO9nza4D_gV9gaKxoQXb0",
+            },
+        })
+        const data = await result.json()
+        console.log(data)
+        mappingProduct(data)
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+function mappingProduct(products) {
+    tableBody.innerHTML = ""
+    const productTr = products.map((product) =>
+        createTableRaw(product)
+    )
+    console.log(productTr)
+    tableBody.append(...productTr)
+}
+
+function createTableRaw(product) {
+    const tr = document.createElement("tr")
+
+    const name = document.createElement("td")
+    name.innerText = product.name
+
+    const brand = document.createElement("td")
+    brand.innerText = product.brand
+
+    const image = document.createElement("td")
+    image.innerText = product.imageUrl
+
+    const price = document.createElement("td")
+    price.innerText = product.price
+
+    const actions = document.createElement("td")
+    const editBtn = document.createElement("a")
+    editBtn.classList.add("btn", "btn-primary", "w-100", "mb-3")
+    editBtn.innerText = "EDIT"
+    editBtn.href = `editProduct.html?id=${product._id}`
+    actions.appendChild(editBtn)
+    const deleteBtn = document.createElement("button")
+    deleteBtn.classList.add("btn", "btn-danger", "w-100")
+    deleteBtn.innerText = "CANC"
+    deleteBtn.addEventListener("click", () => deleteProduct(product._id))
+    actions.appendChild(deleteBtn)
+
+    tr.append(name, brand, image, price, actions)
+
+    return tr
+}
+
+async function saveProduct(e) {
+    e.preventDefault()
+    const data = {
+        name: nameProduct.value,
+        description: descriptionProduct.value,
+        brand: brandProduct.value,
+        imageUrl: imageProduct.value,
+        price: priceProduct.value
+    }
+    console.log(data)
+    try {
+        await fetch("https://striveschool-api.herokuapp.com/api/product", {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODVmOTU3YzIzZGQwMjAwMTUxZGM0ZmIiLCJpYXQiOjE3NTEwOTQ2NTIsImV4cCI6MTc1MjMwNDI1Mn0.rrVjarck49W1zlK6qZ0QG0mO9nza4D_gV9gaKxoQXb0",
+                "Content-Type": "application/json",
+            },
+        })
+        fetchProduct()
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+async function deleteProduct(productId) {
+    try {
+        await fetch(`https://striveschool-api.herokuapp.com/api/product/${productId}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODVmOTU3YzIzZGQwMjAwMTUxZGM0ZmIiLCJpYXQiOjE3NTEwOTQ2NTIsImV4cCI6MTc1MjMwNDI1Mn0.rrVjarck49W1zlK6qZ0QG0mO9nza4D_gV9gaKxoQXb0",
+            },
+        })
+        fetchProduct()
+    } catch (e) {
+        console.log(e)
+    }
+}
