@@ -4,6 +4,9 @@ const descriptionProduct = document.querySelector("#description")
 const brandProduct = document.querySelector("#brand")
 const imageProduct = document.querySelector("#imageUrl")
 const priceProduct = document.querySelector("#price")
+const hiddenInput = document.querySelector("#hiddenInput")
+const successAlert = document.querySelector("#successAlert")
+const errorAlert = document.querySelector("#errorAlert")
 document.querySelector("#saveButton").addEventListener("click", saveProduct)
 
 fetchProduct()
@@ -50,6 +53,7 @@ function createTableRaw(product) {
     const editBtn = document.createElement("a")
     editBtn.classList.add("btn", "btn-primary", "w-100", "mb-3")
     editBtn.innerText = "EDIT"
+    //editBtn.addEventListener("click", () => productInputs(product))
     editBtn.href = `editProduct.html?id=${product._id}`
     actions.appendChild(editBtn)
     const deleteBtn = document.createElement("button")
@@ -73,9 +77,16 @@ async function saveProduct(e) {
         price: priceProduct.value
     }
     console.log(data)
+    let method = "POST"
+    let endpoint = "https://striveschool-api.herokuapp.com/api/product"
+    if (hiddenInput.value) {
+        method = "PUT"
+        endpoint += hiddenInput.value
+    }
     try {
-        await fetch("https://striveschool-api.herokuapp.com/api/product", {
-            method: "POST",
+        await fetch(endpoint, {
+            //In questo caso viene presa in automatico la variabile method, istanziata qui sopra
+            method, //equivale a method: method (variabile sopra istanziata)
             body: JSON.stringify(data),
             headers: {
                 Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODVmOTU3YzIzZGQwMjAwMTUxZGM0ZmIiLCJpYXQiOjE3NTEwOTQ2NTIsImV4cCI6MTc1MjMwNDI1Mn0.rrVjarck49W1zlK6qZ0QG0mO9nza4D_gV9gaKxoQXb0",
@@ -83,7 +94,18 @@ async function saveProduct(e) {
             },
         })
         fetchProduct()
+        successAlert.classList.remove("d-none")
+        nameProduct.value = ""
+        descriptionProduct.value = ""
+        brandProduct.value = ""
+        imageProduct.value = ""
+        priceProduct.value = ""
+        setTimeout(() => {
+            successAlert.classList.add("d-none")
+        }, 2000)
+
     } catch (e) {
+        errorAlert.classList.remove("d-none")
         console.log(e)
     }
 }
@@ -100,4 +122,13 @@ async function deleteProduct(productId) {
     } catch (e) {
         console.log(e)
     }
+}
+
+function productInputs(product) {
+    nameProduct.value = product.name
+    descriptionProduct.value = product.description
+    brandProduct.value = product.brand
+    imageProduct.value = product.imageUrl
+    priceProduct.value = product.price
+    hiddenInput.value = product._id
 }

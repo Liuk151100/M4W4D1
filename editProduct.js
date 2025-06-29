@@ -8,6 +8,8 @@ document.querySelector("#saveButton").addEventListener("click", saveProduct)
 const search = window.location.search
 const searchProduct = new URLSearchParams(search)
 const productId = searchProduct.get("id")
+const successAlert = document.querySelector("#successAlert")
+const errorAlert = document.querySelector("#errorAlert")
 
 getProduct()
 async function getProduct() {
@@ -54,8 +56,18 @@ async function saveProduct(e) {
                 "Content-Type": "application/json",
             },
         })
-        window.location.href = "backOffice.html"
+        successAlert.classList.remove("d-none")
+        nameProduct.value = ""
+        descriptionProduct.value = ""
+        brandProduct.value = ""
+        imageProduct.value = ""
+        priceProduct.value = ""
+        setTimeout(() => {
+            window.location.href = "backOffice.html"
+        }, 1000)
+
     } catch (e) {
+        errorAlert.classList.remove("d-none")
         console.log(e)
     }
 }

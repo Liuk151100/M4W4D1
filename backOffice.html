@@ -14,7 +14,26 @@
 </head>
 
 <body>
-   <div class="container p-4">
+
+    <div id="header" class="px-5 d-flex justify-content-between align-items-center">
+        <!-- logo -->
+        <a href="index.html"><img src="/assets/logo2.png" alt="logo" class="logoImg"></a>
+        <p class="text-center mb-0" onclick="backHome()">the shop</p>
+        <div>
+            <button id="logInBtn" class="btn" data-bs-toggle="modal" data-bs-target="#adminLogIn"><i
+                    class="bi bi-person-badge"></i></button>
+            <a href="backoffice.html" id="goToBackoffice" class="btn" title="backoffice"><i class="bi bi-hdd"></i></a>
+        </div>
+    </div> <!-- fine header -->
+
+    <div class="container p-4">
+        <div class="alert alert-success d-none" role="alert" id="successAlert">
+            Product insertion was successful!!
+        </div>
+        <div class="alert alert-danger d-none" role="alert" id="errorAlert">
+            Product insertion generated an error!!
+        </div>
+        
         <form>
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
@@ -36,9 +55,10 @@
                 <label for="price" class="form-label">Price</label>
                 <input type="number" class="form-control" id="price">
             </div>
+            <input type="hidden" id="hiddenInput">
             <button type="submit" id="saveButton" class="btn btn-primary">Save</button>
         </form>
-   </div>
+    </div>
 
     <div class="container py-4">
         <table class="table">
