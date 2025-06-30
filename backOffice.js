@@ -132,3 +132,8 @@ function productInputs(product) {
     priceProduct.value = product.price
     hiddenInput.value = product._id
 }
+
+function vaiAllaHome(){
+    //windows.open ti permette di aprire una pagina in un altra finestra del browser
+    window.location.href = "Home.html"
+}

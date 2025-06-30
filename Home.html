@@ -10,9 +10,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="Home.css">
     <script src="https://kit.fontawesome.com/36f918938d.js" crossorigin="anonymous"></script>
-    <script src="index.js" defer></script>
+    <script src="Home.js" defer></script>
 </head>
 
 <body>
@@ -25,34 +25,40 @@
     </div>
 
 
-    <div class="container p-4">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
-            <!--<div class="col">
-                <div class="card">
-                    <img src="https://m.media-amazon.com/images/I/71se+LJZybL._AC_UL640_FMwebp_QL65_.jpg" class="card-img-top p-3" alt="">
-                    <div class="card-body">
-                        <h5 class="card-title">Apple</h5>
-                        <h4 class="card-title">Macbook Pro 13"</h4>
-                        <p class="card-text">3100€</p>
-                        <a href="#" class="btn btn-primary">View Details</a>
-                    </div>
-                </div>
-            </div>-->
+    <section class="hero">
+        <h2>Welcome to E-SHOP</h2>
+        <p>Your one-stop shop for the latest and greatest in electronics.</p>
+        <button class="cta-button" onclick="vaiAiProdotti()">Browse Products</button>
+    </section>
+
+    <section class="features">
+        <div class="feature">
+            <h3>Fast Shipping</h3>
+            <p>We deliver your tech to your door in record time.</p>
         </div>
-    </div>
+        <div class="feature">
+            <h3>Best Prices</h3>
+            <p>Competitive prices on top-tier electronic devices.</p>
+        </div>
+        <div class="feature">
+            <h3>24/7 Support</h3>
+            <p>We're here to help, whenever you need us.</p>
+        </div>
+    </section>
+
 
 
     <footer style="background-color: #111; color: #ccc; padding: 40px 20px; font-family: sans-serif;">
         <div style="max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; justify-content: space-between;">
 
             <!-- Logo and description -->
-            <div style="flex: 1; min-width: 220px; margin-bottom: 20px;">
+            <div style="flex: 1; min-width: 220px; margin-bottom: 20px; padding: 10px; ">
                 <h2 style="color: #fff;">E-SHOP</h2>
                 <p>Your trusted marketplace for cutting-edge electronic products.</p>
             </div>
 
             <!-- Useful links -->
-            <div style="flex: 1; min-width: 180px; margin-bottom: 20px;">
+            <div style="flex: 1; min-width: 180px; margin-bottom: 20px; padding: 10px;">
                 <h3 style="color: #fff;">Useful Links</h3>
                 <ul style="list-style: none; padding: 0;">
                     <li><a href="/about" style="color: #ccc; text-decoration: none;">About Us</a></li>
@@ -63,7 +69,7 @@
             </div>
 
             <!-- Customer service -->
-            <div style="flex: 1; min-width: 180px; margin-bottom: 20px;">
+            <div style="flex: 1; min-width: 180px; margin-bottom: 20px; padding: 10px;">
                 <h3 style="color: #fff;">Customer Service</h3>
                 <ul style="list-style: none; padding: 0;">
                     <li><a href="/shipping" style="color: #ccc; text-decoration: none;">Shipping</a></li>
@@ -73,7 +79,7 @@
             </div>
 
             <!-- Newsletter / social -->
-            <div style="flex: 1; min-width: 220px; margin-bottom: 20px;">
+            <div style="flex: 1; min-width: 220px; margin-bottom: 20px; padding: 10px;">
                 <h3 style="color: #fff;">Subscribe to our newsletter</h3>
                 <input type="email" placeholder="Your email" style="padding: 8px; width: 80%; margin-top: 10px;">
                 <button
@@ -91,7 +97,6 @@
             © 2025 E-SHOP. All rights reserved.
         </div>
     </footer>
-
 
 </body>
 

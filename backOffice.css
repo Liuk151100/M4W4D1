@@ -1,0 +1,14 @@
+body{
+    box-sizing: border-box;
+}
+
+#header{
+    width: 100vw;
+    height: 70px;
+    background-color: rgb(206, 204, 204);
+}
+
+.logoImg{
+    height: 100%;
+    width: auto;
+}
