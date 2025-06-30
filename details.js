@@ -39,13 +39,14 @@ function creaPagDettaglio(product){
     const cardTitle2 = document.createElement("h4")
     cardTitle2.classList.add("card-title")
     cardTitle2.innerText = product.name
+    console.log(cardTitle2.innerText)
 
     const cardText = document.createElement("p")
     cardText.classList.add("card-text")
     cardText.innerText = `${product.price}€`
 
     const description = document.createElement("p")
-    cardTitle2.innerText = product.description
+    description.innerText = product.description
 
     div.append(cardTitle1,cardTitle2,cardText,description)
     divFlex.append(img,div)
