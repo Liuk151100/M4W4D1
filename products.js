@@ -44,15 +44,13 @@ function createCard(product) {
     console.log(product)
     const divCol = document.createElement("div")
     divCol.classList.add("col")
-    divCol.style = "height: auto"
-    divCol.style = "width: auto"
+    divCol.style = "height: auto; width:auto;"
 
     const divCard = document.createElement("div")
     divCard.classList.add("card")
 
     const imgCard = document.createElement("img")
     imgCard.classList.add("card-img-top", "p-3")
-    //imgCard.style.add("height: 50%", "width: auto")
     imgCard.style = "height: 200px"
     imgCard.src = product.imageUrl
 
@@ -74,13 +72,12 @@ function createCard(product) {
     const linkBtn = document.createElement("a")
     linkBtn.classList.add("btn", "btn-primary")
     linkBtn.textContent = "View details"
+    linkBtn.addEventListener("click", () => {
+        window.location.href = `details.html?id=${product._id}`
+    })
 
     divCardBody.append(cardTitle1, cardTitle2, cardText, linkBtn)
     divCard.append(imgCard, divCardBody)
     divCol.append(divCard)
     return divCol
-}
-
-function vaiAlDettaglio() {
-    windows.location.href = "detail.html"
 }
