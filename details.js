@@ -27,6 +27,7 @@ function creaPagDettaglio(product){
     divFlex.style = "width:100%; display:flex; margin:20px"
 
     const img = document.createElement("img")
+    img.style = "width:50%;height:auto; margin:10px"
     img.src = product.imageUrl
 
     const div = document.createElement("div")
